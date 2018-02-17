@@ -1,0 +1,10 @@
+output
+
+# build artifacts
+Gemfile.lock
+cqrs-documents.html
+cqrs-documents.pdf
+cqrs-documents.pdfmarks
+cqrs-documents.epub
+cqrs-documents-kf8.epub
+cqrs-documents.mobi
