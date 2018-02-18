@@ -1,0 +1,31 @@
+language: ruby
+git:
+  depth: false
+cache: bundler
+before_install:
+- bundle install
+after_success:
+- scripts/tag_on_master
+script: bundle exec rake book:build
+
+before_deploy: bundle install && bundle exec rake book:build
+deploy:
+  provider: releases
+  file:
+  - cqrs-documents.epub
+  - cqrs-documents.mobi
+  - cqrs-documents.pdf
+  skip_cleanup: true
+  on:
+    tags: true
+  api-key:
+    secure: "keBUZQ+KIuctWegUDBYwj0YvLf+t9/YU9n/esDoyIav0WK0jiEbZO3oB+0GSvZZs73YMIPfnVl/vIlwnpRsm2HZItW7KjohL08vhpKnhefcpb7YrbGKZQOBZWDf1OX16vqCzN8LsZjTTV0btkWIyEq3zZWb1wTa4EorH8ke92ZKOvXZUA2UHT10RjZy5jmPt1nJIE7PccsmjoQ4LZ9Z8dE0/FTvA5S8XlsxC36ZaXfg4be2JzjimUVsZ1qIc5swK4WdZr7as0BSaMiX1lLGu57pKTdgG+bAO3dDpnHXbbwe3RRqmCLerVpUQK+gMoffrG4azV5+9vjYrVSeURGTIpMfR4Ie+2/94FY0rIkM/k9UWsgb1qLcNSZchpKcRgoPOWuHgyhoRKMGQo6s6ZZ605Nq2R5X+hmgTLXyOvcVwvkxZuwmS3Ey8k71FHJBj5MMoFv5Wv/6TCSFNe8LkvJ7cQg9vpLj406EahbHibLmw/XRZ2hv0lBU2vqbX6Uxf45SaaZQrjB4AJIjL6wcPftFTRoDNdPa+BlpUPTR6ghhynJ8ZQCr3YKNQAcvVgK+3YkvgvZKRH4N7CBorIs6/UCvPCZ4qnFUSuwtTjsR3MUX7p7PxDngikIx+n3IbsmRGMsleX5Y+wDr8NpL3ZG4ixfFXutYkCy2/jQgLFC9JlUiyFNM="
+branches:
+  only:
+  - master
+  - /^1\.0(\.\d+)+$/
+
+notifications:
+  email:
+    on_success: never
+    on_failure: always
