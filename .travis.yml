@@ -7,6 +7,9 @@ before_install:
 after_success:
 - scripts/tag_on_master.sh
 script: bundle exec rake book:build
+env:
+  # Encrypted: GITHUB_KEY="{{GitHub personal token value with repo access}}"
+  secure: "sGKgMGkd3Qzz9W00kDLZIhKzkFLLgZIC8gYI4QExJMjUMy9dSYjlTrk7LHg0TqDAFc7zYvPe6UH3Cu+l76iAhIkQKwtFO8rF66UWxMBCZruXa45UA5DRuqaDCwEbbZviYwhsBtm3ojKI8kLJuujiWaPUi1lamcrRufLDACUK4U3YVARHlfWPJDGo29kmus3GVgjkYBliD7IFAYnv3H+q0kZaxXdHCJ2bzw5/vuqn0zFold2YGqPpESvIJmXsVpsbKFcY2BmyOWDnhVNxMeELapz/zdajcCz6tYxwax2nxEHKVEcsHWaM5k/LC9dCJq5myt8kOxDbQTxyCdIJ9fiePN3v/lBRvPM5DhfUC6JATy+JeO7RWjVR3F8cPkGAIqq77Wcq7m7Jq8CHV9tSCM13E96oQ2s4WwNIRE7rrEvNap3GH79kdsHZM63JP7SVcFrRLu+NOGPVlacUaY/iEeFtU59aQz8GjqfS9zpkYuGE3EGqE+3LkMQtxlKQNcZEfMRXGu7X8F4loXkd427fSXNr+9me3YeY5vIyZezKs3ilx10pJQQcNG35dXu1uR4P62A/EiNP9My6iHXTsMiFy6yxmIciCxhaWqD5iQO14QxuIr0nMap84jsfcrrJDhviy+YhRIIQbJntWOyuCoEhDAjzqPjVE2NNmJHmVpXc6lIgsss="
 
 before_deploy: bundle install && bundle exec rake book:build
 deploy:
@@ -19,6 +22,7 @@ deploy:
   on:
     tags: true
   api-key:
+    # Encrypted: GitHub personal token value with repo access
     secure: "keBUZQ+KIuctWegUDBYwj0YvLf+t9/YU9n/esDoyIav0WK0jiEbZO3oB+0GSvZZs73YMIPfnVl/vIlwnpRsm2HZItW7KjohL08vhpKnhefcpb7YrbGKZQOBZWDf1OX16vqCzN8LsZjTTV0btkWIyEq3zZWb1wTa4EorH8ke92ZKOvXZUA2UHT10RjZy5jmPt1nJIE7PccsmjoQ4LZ9Z8dE0/FTvA5S8XlsxC36ZaXfg4be2JzjimUVsZ1qIc5swK4WdZr7as0BSaMiX1lLGu57pKTdgG+bAO3dDpnHXbbwe3RRqmCLerVpUQK+gMoffrG4azV5+9vjYrVSeURGTIpMfR4Ie+2/94FY0rIkM/k9UWsgb1qLcNSZchpKcRgoPOWuHgyhoRKMGQo6s6ZZ605Nq2R5X+hmgTLXyOvcVwvkxZuwmS3Ey8k71FHJBj5MMoFv5Wv/6TCSFNe8LkvJ7cQg9vpLj406EahbHibLmw/XRZ2hv0lBU2vqbX6Uxf45SaaZQrjB4AJIjL6wcPftFTRoDNdPa+BlpUPTR6ghhynJ8ZQCr3YKNQAcvVgK+3YkvgvZKRH4N7CBorIs6/UCvPCZ4qnFUSuwtTjsR3MUX7p7PxDngikIx+n3IbsmRGMsleX5Y+wDr8NpL3ZG4ixfFXutYkCy2/jQgLFC9JlUiyFNM="
 branches:
   only:
