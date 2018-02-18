@@ -5,7 +5,7 @@ cache: bundler
 before_install:
 - bundle install
 after_success:
-- scripts/tag_on_master
+- scripts/tag_on_master.sh
 script: bundle exec rake book:build
 
 before_deploy: bundle install && bundle exec rake book:build
